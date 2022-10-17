@@ -1,0 +1,3 @@
+# TextMiner
+
+School project
