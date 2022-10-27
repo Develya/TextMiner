@@ -18,7 +18,11 @@ namespace AppCore.DAL
 
             Conn.Open();
 
-            string createTable = "CREATE TABLE StringDistances (Id int PRIMARY KEY, Left varchar(1000) NOT NULL, Right varchar(1000) NOT NULL, Value real NOT NULL)";
+            string createTable = "CREATE TABLE StringDistances (" +
+                "Id int PRIMARY KEY, " +
+                "Left varchar(1000) NOT NULL, " +
+                "Right varchar(1000) NOT NULL, " +
+                "Value real NOT NULL)";
 
             SQLiteCommand cmd = Conn.CreateCommand();
             cmd.CommandText = createTable;
@@ -38,13 +42,9 @@ namespace AppCore.DAL
             cmd.Parameters.AddWithValue("Right", rightKShingle);
             cmd.Parameters.AddWithValue("Value", value);
             cmd.ExecuteNonQuery();
-
-            Conn.Close();
         }
         public IList<StringDistance> FindAllStringDistances()
         {
-            this.Conn.Open();
-
             SQLiteCommand cmd = new SQLiteCommand("SELECT * FROM StringDistances", Conn);
 
             SQLiteDataReader reader = cmd.ExecuteReader();

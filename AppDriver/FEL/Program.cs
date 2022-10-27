@@ -1,9 +1,9 @@
 ﻿using AppCore.BLL.Model;
 using AppCore.DAL;
 using CorpusService.BLL.Control;
-using StringDistanceService.BLL.Control;
 using System;
 using System.Collections.Generic;
+using System.Data.SQLite;
 using System.Linq;
 using System.Reflection.Metadata;
 using System.Text;
@@ -17,16 +17,14 @@ namespace AppDriver.FEL
         static void Main(string[] args)
         {
             Console.WriteLine("Executing TextMiner...");
-            DBInMemStringDistanceDAO dBinMemoryStringDistanceDAO = new();
-            StringDistanceController stringDistanceController = new();
+            DBInMemStringDistanceDAO dbInMemoryStringDistanceDAO = new();
 
-            Console.WriteLine(stringDistanceController.CalculateLevenshteinDistance("chess", "chello", dBinMemoryStringDistanceDAO));
-            
-            foreach (StringDistance stringDistance in StringDistanceController.FindAllStringDistances(dBinMemoryStringDistanceDAO))
+            dbInMemoryStringDistanceDAO.AddStringDistance("lol", "hello", 2);
+
+            foreach (StringDistance distance in dbInMemoryStringDistanceDAO.FindAllStringDistances())
             {
-                Console.WriteLine(stringDistance.Value);
+                Console.WriteLine(distance.Right);
             }
-            
         }
     }
 }
