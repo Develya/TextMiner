@@ -9,7 +9,7 @@ namespace AppCore.DAL
 {
     public interface IStringDistanceDAO
     {
-        void AddStringDistance(String leftKShingle, String rightKShingle, double value);
+        void AddStringDistance(StringDistance distance);
 
         IList<StringDistance> FindAllStringDistances();
     }

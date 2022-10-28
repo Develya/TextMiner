@@ -1,5 +1,6 @@
 ﻿using AppCore.BLL.Model;
 using AppCore.DAL;
+using StringDistanceService.BLL.Control;
 using CorpusService.BLL.Control;
 using System;
 using System.Collections.Generic;
@@ -9,6 +10,8 @@ using System.Reflection.Metadata;
 using System.Text;
 using System.Threading.Tasks;
 using Document = AppCore.BLL.Model.Document;
+using SDS.BLL.Control;
+using ApppCore.DAL;
 
 namespace AppDriver.FEL
 {
@@ -17,9 +20,12 @@ namespace AppDriver.FEL
         static void Main(string[] args)
         {
             Console.WriteLine("Executing TextMiner...");
-            DBInMemStringDistanceDAO dbInMemoryStringDistanceDAO = new();
+            InMemoryDatabase db = new InMemoryDatabase();
+            DBInMemStringDistanceDAO dbInMemoryStringDistanceDAO = new(db);
 
-            dbInMemoryStringDistanceDAO.AddStringDistance("lol", "hello", 2);
+            IDistanceService levenshtein = new LevenshteinDistanceService(dbInMemoryStringDistanceDAO);
+
+            Console.WriteLine(levenshtein.GetDistance("chat", "chatte"));
 
             foreach (StringDistance distance in dbInMemoryStringDistanceDAO.FindAllStringDistances())
             {

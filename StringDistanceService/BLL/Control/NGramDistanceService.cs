@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SDS.BLL.Control
 {
-    class NGramDistanceService
+    public class NGramDistanceService
     {
     }
 }

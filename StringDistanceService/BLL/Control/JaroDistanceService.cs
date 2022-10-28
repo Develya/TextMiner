@@ -4,16 +4,16 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SDS.BLL.Control
+namespace StringDistanceService.BLL.Control
 {
-    class JaroDistanceService : IDistanceService
+    public class JaroDistanceService : IDistanceService
     {
-        public double getDistance(string first, string second)
+        public double GetDistance(string first, string second)
         {
             double distance = 0.0d;
-            string firstToken = getMatchingCharacters(first, second);
-            string secondToken = getMatchingCharacters(second, firstToken);  
-            double countNonMatching = countNonMatchingCharacters(firstToken, secondToken); //n
+            string firstToken = GetMatchingCharacters(first, second);
+            string secondToken = GetMatchingCharacters(second, firstToken);  
+            double countNonMatching = CountNonMatchingCharacters(firstToken, secondToken); //n
             double countMatching = firstToken.Length; //m
             
             if (countMatching == 0)
@@ -27,7 +27,7 @@ namespace SDS.BLL.Control
 
 
 
-        private string getMatchingCharacters(string first, string second)
+        private string GetMatchingCharacters(string first, string second)
         {
             ICollection<char> buffer = new HashSet<char>();
             foreach (char f in first)
@@ -42,7 +42,7 @@ namespace SDS.BLL.Control
             return matchingCharacters.ToString();
         }
 
-        public double countNonMatchingCharacters(string first, string second)
+        public double CountNonMatchingCharacters(string first, string second)
         {
             double distance = 0.0d;
             int counter = 0;

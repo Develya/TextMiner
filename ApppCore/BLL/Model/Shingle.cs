@@ -10,7 +10,8 @@ namespace AppCore.BLL.Model
     {
         // A sequence of k continous characters
         public String sequence { get; set; }
-        int k; 
+        public int k { get; set; } 
+
         public Shingle(string sequence, int k)
         {
             this.sequence = sequence;

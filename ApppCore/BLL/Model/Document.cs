@@ -11,13 +11,13 @@ namespace AppCore.BLL.Model
 {
     public class Document
     {
-        public String text { get; set; }
+        public String Text { get; set; }
 
         public IList<Shingle> Shingles { get; set; }
 
         public Document(string text)
         {
-            this.text = text;
+            this.Text = text;
             this.Shingles = new List<Shingle>();
         }
 
@@ -28,7 +28,7 @@ namespace AppCore.BLL.Model
         // Convert all letters to lowercase, remove punctuation, remove extra whitespaces and remove stop words
         public String Normalize()
         {
-            StringBuilder buffer = new StringBuilder(this.text.ToLower());
+            StringBuilder buffer = new StringBuilder(this.Text.ToLower());
             
             buffer = Document.RemovePunctuation(buffer.ToString());
             buffer = Document.RemoveExtraWhiteSpace(buffer.ToString());
@@ -36,7 +36,7 @@ namespace AppCore.BLL.Model
 
             String normalizedText = buffer.ToString();
 
-            this.text = normalizedText;
+            this.Text = normalizedText;
 
             return normalizedText;
         }
@@ -120,7 +120,7 @@ namespace AppCore.BLL.Model
 
         private void WordBasedShinglization(int k)
         {
-            string[] parts = this.text.Split();
+            string[] parts = this.Text.Split();
             // For every word in document
             for (int i = 0; i < parts.Length; i++)
             {
@@ -146,7 +146,7 @@ namespace AppCore.BLL.Model
         private void CharacterBasedShinglization(int k)
         {
             List<char> chars = new List<char>();
-            chars.AddRange(Document.RemoveAllWhiteSpaces(this.text));
+            chars.AddRange(Document.RemoveAllWhiteSpaces(this.Text));
             // For every character in document
             for (int i = 0; i < chars.Count; i++)
             {
@@ -184,7 +184,7 @@ namespace AppCore.BLL.Model
 
         public override string ToString()
         {
-            return this.text;
+            return this.Text;
         }
     }
 }

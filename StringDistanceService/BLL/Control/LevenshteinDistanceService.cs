@@ -1,18 +1,25 @@
 ﻿using AppCore.BLL.Model;
+using AppCore.DAL;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SDS.BLL.Control
+namespace StringDistanceService.BLL.Control
 {
-    class LevenshteinDistanceService : IDistanceService
+    public class LevenshteinDistanceService : IDistanceService
     {
+        private IStringDistanceDAO Dao;
+        public LevenshteinDistanceService(IStringDistanceDAO dao)
+        {
+            this.Dao = dao;
+        }
 
-        public double getDistance(string first, string second)
+        public double GetDistance(string first, string second)
         {
             int distance = LevenshteinDistance(first, second);
+            this.Dao.AddStringDistance(new StringDistance(first, second, distance));
             return distance;
         }
 

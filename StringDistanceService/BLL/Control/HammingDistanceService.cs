@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SDS.BLL.Control
+namespace StringDistanceService.BLL.Control
 {
     public class HammingDistanceService : IDistanceService
     {
@@ -15,9 +15,8 @@ namespace SDS.BLL.Control
         ///  <param name="second" type="string"></param>
         /// <returns name="distance" type="doubke">distance between provided tokens</returns>
         /// </summary>
-        public double getDistance(string first, string second)
+        public double GetDistance(string first, string second)
         {
-            Console.WriteLine("HammingDistanceService>>getDistance...");
             double distance = 0.0d;
             int counter = 0;
             while ((counter < first.Length) && (counter < second.Length)) {

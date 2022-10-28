@@ -9,7 +9,7 @@ namespace AppCore.DAL
 {
     public interface IDocumentDAO
     {
-        void AddDocument(String text);
+        void AddDocument(Document document);
         IList<Document> FindAllDocuments();
     }
 }

@@ -4,10 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SDS.BLL.Control
+namespace StringDistanceService.BLL.Control
 {
     public interface IDistanceService
     {
-        public double getDistance(string first, string second);
+        public double GetDistance(string first, string second);
     }
 }

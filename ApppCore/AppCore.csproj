@@ -58,6 +58,7 @@
     <Compile Include="DAL\DBInMemDocumentDAO.cs" />
     <Compile Include="DAL\DBInMemStringDistanceDAO.cs" />
     <Compile Include="DAL\IDocumentDAO.cs" />
+    <Compile Include="DAL\InMemoryDatabase.cs" />
     <Compile Include="DAL\IStringDistanceDAO.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

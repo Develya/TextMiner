@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace SDS.BLL.Control
 {
-    class SMCDistanceService
+    public class SMCDistanceService
     {
-        public double getDistance(string first, string second)
+        public double GetDistance(string first, string second)
         {
             throw new NotImplementedException();
         }

@@ -1,4 +1,5 @@
 ﻿using AppCore.BLL.Model;
+using ApppCore.DAL;
 using System;
 using System.Collections.Generic;
 using System.Data.SQLite;
@@ -11,48 +12,36 @@ namespace AppCore.DAL
 {
     public class DBInMemStringDistanceDAO : IStringDistanceDAO
     {
-        private SQLiteConnection Conn;
-        public DBInMemStringDistanceDAO()
+        private InMemoryDatabase DB;
+        public DBInMemStringDistanceDAO(InMemoryDatabase db)
         {
-            this.Conn = new SQLiteConnection("Data Source=:memory:;Version=3;New=True;");
-
-            Conn.Open();
-
-            string createTable = "CREATE TABLE StringDistances (" +
-                "Id int PRIMARY KEY, " +
-                "Left varchar(1000) NOT NULL, " +
-                "Right varchar(1000) NOT NULL, " +
-                "Value real NOT NULL)";
-
-            SQLiteCommand cmd = Conn.CreateCommand();
-            cmd.CommandText = createTable;
-            cmd.ExecuteNonQuery();
+            this.DB = db;
         }
 
-        public void AddStringDistance(String leftKShingle, String rightKShingle, double value)
+        public void AddStringDistance(StringDistance stringDistance)
         {
-            string insert = "INSERT INTO StringDistances(ID, Left, Right, Value) VALUES (?, ?, ?, ?)";
+            string insert = "INSERT INTO StringDistances(StringDistanceID, LeftShingle, RightShingle, Value) VALUES (?, ?, ?, ?)";
 
-            SQLiteCommand cmd = Conn.CreateCommand();
+            SQLiteCommand cmd = DB.Conn.CreateCommand();
 
-            cmd = Conn.CreateCommand();
+            cmd = DB.Conn.CreateCommand();
             cmd.CommandText = insert;
-            cmd.Parameters.AddWithValue("ID", null);
-            cmd.Parameters.AddWithValue("Left", leftKShingle);
-            cmd.Parameters.AddWithValue("Right", rightKShingle);
-            cmd.Parameters.AddWithValue("Value", value);
+            cmd.Parameters.AddWithValue("StringDistanceID", null);
+            cmd.Parameters.AddWithValue("LeftShingle", stringDistance.Left);
+            cmd.Parameters.AddWithValue("RightShingle", stringDistance.Right);
+            cmd.Parameters.AddWithValue("Value", stringDistance.Value);
             cmd.ExecuteNonQuery();
         }
         public IList<StringDistance> FindAllStringDistances()
         {
-            SQLiteCommand cmd = new SQLiteCommand("SELECT * FROM StringDistances", Conn);
+            SQLiteCommand cmd = new SQLiteCommand("SELECT * FROM StringDistances", DB.Conn);
 
             SQLiteDataReader reader = cmd.ExecuteReader();
 
             IList<StringDistance> stringDistances = new List<StringDistance>();
             while (reader.Read())
             {
-                stringDistances.Add(new StringDistance(reader["Left"].ToString(), reader["Right"].ToString(), Double.Parse(reader["Value"].ToString())));
+                stringDistances.Add(new StringDistance(reader["LeftShingle"].ToString(), reader["RightShingle"].ToString(), Double.Parse(reader["Value"].ToString())));
             }
 
             return stringDistances;

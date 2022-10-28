@@ -16,7 +16,7 @@ namespace AppCore.DAL
             this.Conn = new SQLiteConnection("Data Source=:memory:;Version=3;New=True;");
         }
 
-        public void AddDocument(String text)
+        public void AddDocument(Document document)
         {
             Conn.Open();
 
@@ -34,7 +34,7 @@ namespace AppCore.DAL
             cmd = Conn.CreateCommand();
             cmd.CommandText = insert;
             cmd.Parameters.AddWithValue("ID", null);
-            cmd.Parameters.AddWithValue("Text", text);
+            cmd.Parameters.AddWithValue("Text", document.Text);
             cmd.ExecuteNonQuery();
 
             Conn.Close();

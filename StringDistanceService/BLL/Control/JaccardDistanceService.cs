@@ -4,11 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SDS.BLL.Control
+namespace StringDistanceService.BLL.Control
 {
-    class JaccardDistanceService : IDistanceService
+    public class JaccardDistanceService : IDistanceService
     {
-        public double getDistance(string first, string second)
+        public double GetDistance(string first, string second)
         {
             throw new NotImplementedException();
         }

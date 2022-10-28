@@ -17,9 +17,10 @@ namespace CorpusService.BLL.Control
             this.documentDAO = documentDAO;
         }
 
-        public void AddNewDocument(int id, String text)
+        public void AddNewDocument(String text)
         {
-            this.documentDAO.AddDocument(text);
+            Document doc = new Document(text);
+            this.documentDAO.AddDocument(doc);
         }
 
         public IList<Document> FindAllDocuments()
