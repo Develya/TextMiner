@@ -23,14 +23,9 @@ namespace AppDriver.FEL
             InMemoryDatabase db = new InMemoryDatabase();
             DBInMemStringDistanceDAO dbInMemoryStringDistanceDAO = new(db);
 
-            IDistanceService levenshtein = new LevenshteinDistanceService(dbInMemoryStringDistanceDAO);
+            IDistanceService smc = new SMCDistanceService(dbInMemoryStringDistanceDAO);
 
-            Console.WriteLine(levenshtein.GetDistance("chat", "chatte"));
-
-            foreach (StringDistance distance in dbInMemoryStringDistanceDAO.FindAllStringDistances())
-            {
-                Console.WriteLine(distance.Right);
-            }
+            Console.WriteLine(smc.GetDistance("chien", "chat"));
         }
     }
 }
