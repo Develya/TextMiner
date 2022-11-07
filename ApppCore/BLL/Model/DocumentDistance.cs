@@ -18,5 +18,10 @@ namespace AppCore.BLL.Model
             this.Right = right;
             this.Value = value;
         }
+
+        public override string ToString()
+        {
+            return this.Left.Text + ";" + this.Right.Text + ";" + this.Value;
+        }
     }
 }

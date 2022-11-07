@@ -8,10 +8,10 @@ using System.Threading.Tasks;
 
 namespace StringDistanceService.BLL.Control
 {
-    public class LevenshteinDistanceService : IDistanceService
+    public class LevenshteinStringDistanceService : IStringDistanceService
     {
         private IStringDistanceDAO Dao;
-        public LevenshteinDistanceService(IStringDistanceDAO dao)
+        public LevenshteinStringDistanceService(IStringDistanceDAO dao)
         {
             this.Dao = dao;
         }

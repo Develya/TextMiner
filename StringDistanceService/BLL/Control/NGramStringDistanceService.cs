@@ -8,10 +8,10 @@ using System.Threading.Tasks;
 
 namespace SDS.BLL.Control
 {
-    public class NGramDistanceService
+    public class NGramStringDistanceService
     {
         private IStringDistanceDAO Dao;
-        public NGramDistanceService(IStringDistanceDAO dao)
+        public NGramStringDistanceService(IStringDistanceDAO dao)
         {
             this.Dao = dao;
         }

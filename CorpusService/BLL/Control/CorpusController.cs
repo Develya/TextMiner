@@ -10,22 +10,40 @@ namespace CorpusService.BLL.Control
 {
     public class CorpusController
     {
-        private IDocumentDAO documentDAO;
+        public delegate double DistanceAlgorithm(Document doc1, Document doc2);
 
-        public CorpusController(IDocumentDAO documentDAO)
-        {
-            this.documentDAO = documentDAO;
-        }
-
-        public void AddNewDocument(String text)
+        public void AddNewDocument(String text, IDocumentDAO documentDAO)
         {
             Document doc = new Document(text);
-            this.documentDAO.AddDocument(doc);
+            documentDAO.AddDocument(doc);
         }
 
-        public IList<Document> FindAllDocuments()
+        public IList<Document> FindAllDocuments(IDocumentDAO documentDAO)
         {
-            return this.documentDAO.FindAllDocuments();
+            return documentDAO.FindAllDocuments();
+        }
+
+        public IList<DocumentDistance> FindAllSimilarDocuments(double threshold, DistanceAlgorithm distance, IDocumentDAO documentDAO)
+        {
+            IList<Document> documents = this.FindAllDocuments(documentDAO);
+            IList<DocumentDistance> distances = new List<DocumentDistance>();
+
+            documents.ToList().ForEach(document => {
+                documents.ToList().ForEach(document2 => {
+                    if (document.Text != document2.Text)
+                    {
+                        bool pairAlreadyCompared = false;
+                        distances.ToList().ForEach(distance => { 
+                            if (distance.Left.Text == document2.Text && distance.Right.Text == document.Text)
+                                pairAlreadyCompared = true;
+                        });
+                        if (!pairAlreadyCompared)
+                            distances.Add(new DocumentDistance(document, document2, distance(document, document2)));
+                    }
+                });
+            });
+
+            return distances;
         }
     }
 }

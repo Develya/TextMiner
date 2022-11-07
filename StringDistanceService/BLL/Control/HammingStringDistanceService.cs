@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace StringDistanceService.BLL.Control
 {
-    public class HammingDistanceService : IDistanceService
+    public class HammingStringDistanceService : IStringDistanceService
     {
         /// <summary>
         /// Method <c>getDistance</c> returns number of different positions in

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace StringDistanceService.BLL.Control
 {
-    public class JaroDistanceService : IDistanceService
+    public class JaroStringDistanceService : IStringDistanceService
     {
         public double GetDistance(string first, string second)
         {

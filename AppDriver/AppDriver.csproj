@@ -22,6 +22,7 @@
   <ItemGroup>
     <ProjectReference Include="..\ApppCore\AppCore.csproj" />
     <ProjectReference Include="..\CorpusService\CorpusService.csproj" />
+    <ProjectReference Include="..\DocumentDistanceService\DocumentDistanceService.csproj" />
     <ProjectReference Include="..\StringDistanceService\StringDistanceService.csproj" />
   </ItemGroup>
 

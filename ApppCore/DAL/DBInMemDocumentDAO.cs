@@ -1,4 +1,5 @@
 ﻿using AppCore.BLL.Model;
+using ApppCore.DAL;
 using System;
 using System.Collections.Generic;
 using System.Data.SQLite;
@@ -10,40 +11,25 @@ namespace AppCore.DAL
 {
     public class DBInMemDocumentDAO : IDocumentDAO
     {
-        private SQLiteConnection Conn;
-        public DBInMemDocumentDAO()
+        private InMemoryDatabase db;
+        public DBInMemDocumentDAO(InMemoryDatabase db)
         {
-            this.Conn = new SQLiteConnection("Data Source=:memory:;Version=3;New=True;");
+            this.db = db;
         }
 
         public void AddDocument(Document document)
         {
-            Conn.Open();
+            string insert = "insert into Document(DocumentID, Text) VALUES (?, ?)";
 
-            SQLiteCommand cmd = new SQLiteCommand(
-                "create table Documents (" + 
-                "ID int primary key not null," +
-                "Text varchar(1000) not null",
-                Conn
-                );
-
-            cmd.ExecuteNonQuery();
-
-            string insert = "insert into Documents(ID, Text) VALUES (?, ?)";
-
-            cmd = Conn.CreateCommand();
+            SQLiteCommand cmd = db.Conn.CreateCommand();
             cmd.CommandText = insert;
-            cmd.Parameters.AddWithValue("ID", null);
+            cmd.Parameters.AddWithValue("DocumentID", null);
             cmd.Parameters.AddWithValue("Text", document.Text);
             cmd.ExecuteNonQuery();
-
-            Conn.Close();
         }
         public IList<Document> FindAllDocuments()
         {
-            this.Conn.Open();
-
-            SQLiteCommand cmd = new SQLiteCommand("select * from Documents;");
+            SQLiteCommand cmd = new SQLiteCommand("select * from Document;", db.Conn);
 
             SQLiteDataReader reader = cmd.ExecuteReader();
 

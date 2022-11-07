@@ -8,11 +8,11 @@ using System.Threading.Tasks;
 
 namespace StringDistanceService.BLL.Control
 {
-    public class JaccardDistanceService : IDistanceService
+    public class JaccardStringDistanceService : IStringDistanceService
     {
         private IStringDistanceDAO Dao;
 
-        public JaccardDistanceService(IStringDistanceDAO dao)
+        public JaccardStringDistanceService(IStringDistanceDAO dao)
         {
             this.Dao = dao;
         }

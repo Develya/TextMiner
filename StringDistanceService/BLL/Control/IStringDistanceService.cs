@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace StringDistanceService.BLL.Control
 {
-    public interface IDistanceService
+    public interface IStringDistanceService
     {
         public double GetDistance(string first, string second);
     }

@@ -12,6 +12,7 @@ using System.Threading.Tasks;
 using Document = AppCore.BLL.Model.Document;
 using SDS.BLL.Control;
 using ApppCore.DAL;
+using DocumentDistanceService.BLL.Control;
 
 namespace AppDriver.FEL
 {
@@ -22,10 +23,20 @@ namespace AppDriver.FEL
             Console.WriteLine("Executing TextMiner...");
             InMemoryDatabase db = new InMemoryDatabase();
             DBInMemStringDistanceDAO dbInMemoryStringDistanceDAO = new(db);
+            DBInMemDocumentDAO dBInMemDocumentDAO = new(db);
 
-            IDistanceService smc = new SMCDistanceService(dbInMemoryStringDistanceDAO);
+            IDocumentDistanceService jaccard = new JaccardDocumentDistanceService();
+            CorpusController corpusController = new CorpusController();
 
-            Console.WriteLine(smc.GetDistance("chien", "chat"));
+            Document doc1 = new Document("hello i LOVE");
+            Document doc2 = new Document("hello i HATE");
+
+            corpusController.AddNewDocument(doc1.Text, dBInMemDocumentDAO);
+            corpusController.AddNewDocument(doc2.Text, dBInMemDocumentDAO);
+
+            corpusController.FindAllSimilarDocuments(0, jaccard.GetDistance, dBInMemDocumentDAO).ToList().ForEach(distance => Console.WriteLine(distance.ToString()));
+
+            Console.WriteLine(jaccard.GetDistance(doc1, doc2));
         }
     }
 }
