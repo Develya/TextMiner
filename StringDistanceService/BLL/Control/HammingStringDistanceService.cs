@@ -8,23 +8,22 @@ namespace StringDistanceService.BLL.Control
 {
     public class HammingStringDistanceService : IStringDistanceService
     {
-        /// <summary>
-        /// Method <c>getDistance</c> returns number of different positions in
-        /// both tokens
-        ///  <param name="first" type="string"></param>
-        ///  <param name="second" type="string"></param>
-        /// <returns name="distance" type="doubke">distance between provided tokens</returns>
-        /// </summary>
+        // Distance between two strings of equal length is the number of positions
+        // at which the corresponding symbols are different. 
+
         public double GetDistance(string first, string second)
         {
-            double distance = 0.0d;
-            int counter = 0;
-            while ((counter < first.Length) && (counter < second.Length)) {
-                if (Char.ToUpper(first[counter]) != Char.ToUpper(second[counter]))
+            double distance = 0.0;
+            int i = 0;
+
+            // Calculates the number of positions where characters are different
+            while ((i < first.Length) && (i < second.Length)) {
+                if (Char.ToUpper(first[i]) != Char.ToUpper(second[i]))
                     distance++;
-                counter++;
+                i++;
             }
-            return distance + (first.Length - counter) + (second.Length - counter); 
+
+            return distance; 
         }
     }
 }

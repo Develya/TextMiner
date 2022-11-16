@@ -26,17 +26,19 @@ namespace AppDriver.FEL
             DBInMemDocumentDAO dBInMemDocumentDAO = new(db);
 
             IDocumentDistanceService jaccard = new JaccardDocumentDistanceService();
-            CorpusController corpusController = new CorpusController();
+            IStringDistanceService hamming = new HammingStringDistanceService();
+            // CorpusController corpusController = new CorpusController();
 
             Document doc1 = new Document("hello i LOVE");
             Document doc2 = new Document("hello i HATE");
 
-            corpusController.AddNewDocument(doc1.Text, dBInMemDocumentDAO);
-            corpusController.AddNewDocument(doc2.Text, dBInMemDocumentDAO);
+            // corpusController.AddNewDocument(doc1.Text, dBInMemDocumentDAO);
+            // corpusController.AddNewDocument(doc2.Text, dBInMemDocumentDAO);
 
-            corpusController.FindAllSimilarDocuments(0, jaccard.GetDistance, dBInMemDocumentDAO).ToList().ForEach(distance => Console.WriteLine(distance.ToString()));
+            // corpusController.FindAllSimilarDocuments(0, jaccard.GetDistance, dBInMemDocumentDAO).ToList().ForEach(distance => Console.WriteLine(distance.ToString()));
 
             Console.WriteLine(jaccard.GetDistance(doc1, doc2));
+            Console.WriteLine(hamming.GetDistance("hey", "ooo"));
         }
     }
 }

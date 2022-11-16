@@ -19,9 +19,19 @@ namespace StringDistanceService.BLL.Control
 
         public double GetDistance(string first, string second)
         {
-            double distance = 0.0;
+            double distance;
+            IList<char> commonLetters = JaccardStringDistanceService.FindCommonLetters(first, second);
+
+            distance = 1 - ((double) commonLetters.Count / (double) (first.Length + second.Length));
+            this.Dao.AddStringDistance(new StringDistance(first, second, distance));
+            return distance;
+        }
+
+        private static IList<char> FindCommonLetters(string first, string second)
+        {
             IList<char> commonLetters = new List<char>();
 
+            // Common letters from first string to second string
             foreach (char c in first.ToUpper())
             {
                 if (second.ToUpper().Contains(c) && !commonLetters.Contains(c))
@@ -30,6 +40,7 @@ namespace StringDistanceService.BLL.Control
                 }
             }
 
+            // Common letters from second string to first string
             foreach (char c in second.ToUpper())
             {
                 if (first.ToUpper().Contains(c) && !commonLetters.Contains(c))
@@ -38,9 +49,7 @@ namespace StringDistanceService.BLL.Control
                 }
             }
 
-            distance = 1 - ((double) commonLetters.Count() / (double) (first.Length + second.Length));
-            this.Dao.AddStringDistance(new StringDistance(first, second, distance));
-            return distance;
+            return commonLetters;
         }
     }
 }
