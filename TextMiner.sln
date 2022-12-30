@@ -13,6 +13,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AppCore", "ApppCore\AppCore
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DocumentDistanceService", "DocumentDistanceService\DocumentDistanceService.csproj", "{EB7C74DF-23D9-4ABE-9416-FBA4E32CCF41}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AppUI", "AppUI\AppUI.csproj", "{29E8E0F9-287A-44B1-B51D-523793012DB2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AppQA", "AppQA\AppQA.csproj", "{45B50595-7D52-4906-A8AA-1FEDADDE14F0}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +43,14 @@ Global
 		{EB7C74DF-23D9-4ABE-9416-FBA4E32CCF41}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EB7C74DF-23D9-4ABE-9416-FBA4E32CCF41}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EB7C74DF-23D9-4ABE-9416-FBA4E32CCF41}.Release|Any CPU.Build.0 = Release|Any CPU
+		{29E8E0F9-287A-44B1-B51D-523793012DB2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{29E8E0F9-287A-44B1-B51D-523793012DB2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{29E8E0F9-287A-44B1-B51D-523793012DB2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{29E8E0F9-287A-44B1-B51D-523793012DB2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{45B50595-7D52-4906-A8AA-1FEDADDE14F0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{45B50595-7D52-4906-A8AA-1FEDADDE14F0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{45B50595-7D52-4906-A8AA-1FEDADDE14F0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{45B50595-7D52-4906-A8AA-1FEDADDE14F0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -11,14 +11,19 @@ namespace AppCore.BLL.Model
 {
     public class Document
     {
+        public int DocumentID { get; set; }
         public String Text { get; set; }
 
-        public IList<Shingle> Shingles { get; set; }
+        private IList<Shingle> Shingles;
+
+        static int currentID = 1;
 
         public Document(string text)
         {
             this.Text = text;
             this.Shingles = new List<Shingle>();
+            this.DocumentID = Document.currentID;
+            Document.currentID++;
         }
 
         /*
@@ -181,10 +186,14 @@ namespace AppCore.BLL.Model
             return textWithoutWhiteSpace.ToString();
         }
 
-
         public override string ToString()
         {
             return this.Text;
+        }
+
+        public IList<Shingle> GetShingles()
+        {
+            return this.Shingles;
         }
     }
 }

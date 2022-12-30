@@ -20,7 +20,7 @@ namespace StringDistanceService.BLL.Control
         {
             int distance = LevenshteinDistance(first, second);
             this.Dao.AddStringDistance(new StringDistance(first, second, distance));
-            return distance;
+            return distance * 100;
         }
 
         public int LevenshteinDistance(string first, string second)

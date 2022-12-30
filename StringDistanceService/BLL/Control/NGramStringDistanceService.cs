@@ -6,15 +6,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SDS.BLL.Control
+namespace StringDistanceService.BLL.Control
 {
-    public class NGramStringDistanceService
+    public class NGramStringDistanceService : IStringDistanceService
     {
-        private IStringDistanceDAO Dao;
-        public NGramStringDistanceService(IStringDistanceDAO dao)
-        {
-            this.Dao = dao;
-        }
+        public NGramStringDistanceService() { }
         public double GetDistance(string first, string second)
         {
             double distance = 0f;
@@ -69,10 +65,8 @@ namespace SDS.BLL.Control
                     totalOf1s++;
             }
 
-            distance = (double) commonShingles.Count() * 2 - (double) totalOf1s;
-            Dao.AddStringDistance(new StringDistance(first, second, distance));
+            distance = ((double) commonShingles.Count()) * 2 - ((double) totalOf1s);
             return distance;
-
         }
 
         private IList<Shingle> CharacterBasedShinglization(string word, int n)

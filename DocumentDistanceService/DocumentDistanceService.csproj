@@ -52,11 +52,7 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="BLL\Model\" />
-    <Folder Include="DAL\" />
-    <Folder Include="FEL\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\ApppCore\AppCore.csproj">
       <Project>{e288bf79-bcb3-493e-8ac3-264e3c8e0fec}</Project>

@@ -1,6 +1,7 @@
 ﻿using AppCore.BLL.Model;
 using ApppCore.DAL;
 using System;
+using System.CodeDom;
 using System.Collections.Generic;
 using System.Data.SQLite;
 using System.Linq;
@@ -9,6 +10,8 @@ using System.Threading.Tasks;
 
 namespace AppCore.DAL
 {
+    // For SQLite
+
     public class DBInMemDocumentDAO : IDocumentDAO
     {
         private InMemoryDatabase db;
@@ -16,6 +19,8 @@ namespace AppCore.DAL
         {
             this.db = db;
         }
+
+        public DBInMemDocumentDAO() { }
 
         public void AddDocument(Document document)
         {
@@ -27,7 +32,8 @@ namespace AppCore.DAL
             cmd.Parameters.AddWithValue("Text", document.Text);
             cmd.ExecuteNonQuery();
         }
-        public IList<Document> FindAllDocuments()
+
+        public virtual IList<Document> FindAllDocuments()
         {
             SQLiteCommand cmd = new SQLiteCommand("select * from Document;", db.Conn);
 

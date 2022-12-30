@@ -23,7 +23,7 @@ namespace StringDistanceService.BLL.Control
                 i++;
             }
 
-            return distance; 
+            return distance * 100; 
         }
     }
 }

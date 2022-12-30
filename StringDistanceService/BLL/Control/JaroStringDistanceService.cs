@@ -22,7 +22,7 @@ namespace StringDistanceService.BLL.Control
                 distance = 0.33 * (countMatching/first.Length + 
                                 countMatching/second.Length 
                                 + (countMatching- countNonMatching)/countMatching);
-            return distance;
+            return distance * 100;
         }
 
 

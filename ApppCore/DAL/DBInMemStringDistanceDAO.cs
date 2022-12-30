@@ -10,10 +10,15 @@ using static System.Net.Mime.MediaTypeNames;
 
 namespace AppCore.DAL
 {
-    public class DBInMemStringDistanceDAO : IStringDistanceDAO
+    public class DBInMemDocumentDistanceDAO : IStringDistanceDAO
     {
+
+        // For SQLite
+
         private InMemoryDatabase DB;
-        public DBInMemStringDistanceDAO(InMemoryDatabase db)
+        private SQLiteCommand cmd = null;
+
+        public DBInMemDocumentDistanceDAO(InMemoryDatabase db)
         {
             this.DB = db;
         }
@@ -22,21 +27,22 @@ namespace AppCore.DAL
         {
             string insert = "INSERT INTO StringDistances(StringDistanceID, LeftShingle, RightShingle, Value) VALUES (?, ?, ?, ?)";
 
-            SQLiteCommand cmd = DB.Conn.CreateCommand();
+            this.cmd = DB.Conn.CreateCommand();
 
-            cmd = DB.Conn.CreateCommand();
-            cmd.CommandText = insert;
-            cmd.Parameters.AddWithValue("StringDistanceID", null);
-            cmd.Parameters.AddWithValue("LeftShingle", stringDistance.Left);
-            cmd.Parameters.AddWithValue("RightShingle", stringDistance.Right);
-            cmd.Parameters.AddWithValue("Value", stringDistance.Value);
-            cmd.ExecuteNonQuery();
+            this.cmd = DB.Conn.CreateCommand();
+            this.cmd.CommandText = insert;
+            this.cmd.Parameters.AddWithValue("StringDistanceID", null);
+            this.cmd.Parameters.AddWithValue("LeftShingle", stringDistance.Left);
+            this.cmd.Parameters.AddWithValue("RightShingle", stringDistance.Right);
+            this.cmd.Parameters.AddWithValue("Value", stringDistance.Value);
+            this.cmd.ExecuteNonQuery();
         }
+
         public IList<StringDistance> FindAllStringDistances()
         {
-            SQLiteCommand cmd = new SQLiteCommand("SELECT * FROM StringDistances", DB.Conn);
+            this.cmd = new SQLiteCommand("SELECT * FROM StringDistances", DB.Conn);
 
-            SQLiteDataReader reader = cmd.ExecuteReader();
+            SQLiteDataReader reader = this.cmd.ExecuteReader();
 
             IList<StringDistance> stringDistances = new List<StringDistance>();
             while (reader.Read())

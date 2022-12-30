@@ -18,10 +18,10 @@ namespace DocumentDistanceService.BLL.Control
             doc2.Normalize();
             doc2.Shinglize(2, "WORD");
 
-            IList<string> commonShingles = JaccardDocumentDistanceService.FindAllCommonShingles(doc1.Shingles, doc2.Shingles);
-            HashSet<string> uniqueShingles = JaccardDocumentDistanceService.FindAllUniqueShingles(doc1.Shingles, doc2.Shingles);
+            IList<string> commonShingles = JaccardDocumentDistanceService.FindAllCommonShingles(doc1.GetShingles(), doc2.GetShingles());
+            HashSet<string> uniqueShingles = JaccardDocumentDistanceService.FindAllUniqueShingles(doc1.GetShingles(), doc2.GetShingles());
 
-            return  (double) commonShingles.Count / (double) uniqueShingles.Count;
+            return (double) (commonShingles.Count / (double) uniqueShingles.Count) * 100;
         }
 
         private static IList<string> FindAllCommonShingles(IList<Shingle> doc1Shingles, IList<Shingle> doc2Shingles)
@@ -47,8 +47,6 @@ namespace DocumentDistanceService.BLL.Control
                 if (!uniqueShingles.Contains(s))
                     uniqueShingles.Add(s);
             });
-            
-
 
             return uniqueShingles;
         }

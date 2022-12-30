@@ -10,12 +10,7 @@ namespace StringDistanceService.BLL.Control
 {
     public class JaccardStringDistanceService : IStringDistanceService
     {
-        private IStringDistanceDAO Dao;
-
-        public JaccardStringDistanceService(IStringDistanceDAO dao)
-        {
-            this.Dao = dao;
-        }
+        public JaccardStringDistanceService() { }
 
         public double GetDistance(string first, string second)
         {
@@ -23,8 +18,7 @@ namespace StringDistanceService.BLL.Control
             IList<char> commonLetters = JaccardStringDistanceService.FindCommonLetters(first, second);
 
             distance = 1 - ((double) commonLetters.Count / (double) (first.Length + second.Length));
-            this.Dao.AddStringDistance(new StringDistance(first, second, distance));
-            return distance;
+            return distance * 100;
         }
 
         private static IList<char> FindCommonLetters(string first, string second)

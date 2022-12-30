@@ -8,12 +8,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="BLL\Control\" />
-    <Folder Include="BLL\Model\" />
-    <Folder Include="DAL\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="Stub.System.Data.SQLite.Core.NetFramework" Version="1.0.116" />
     <PackageReference Include="System.Data.SQLite.Core" Version="1.0.116" />
     <PackageReference Include="System.Data.SQLite.Linq" Version="1.0.116" />

@@ -9,14 +9,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Runtime.ExceptionServices;
 
-namespace SDS.BLL.Control
+namespace StringDistanceService.BLL.Control
 {
     public class SMCStringDistanceService : IStringDistanceService
     {
-        private IStringDistanceDAO Dao;
-        public SMCStringDistanceService(IStringDistanceDAO dao)
+        public SMCStringDistanceService()
         {
-            this.Dao = dao;
         }
 
         public double GetDistance(string first, string second)
@@ -49,8 +47,7 @@ namespace SDS.BLL.Control
             }
 
             distance = (double) m00orm11 / (double) (m00orm11 + m01 + m10);
-            this.Dao.AddStringDistance(new StringDistance(first, second, distance));
-            return distance;
+            return distance * 100;
         }
 
         private static IList<char> GetAllLetters(string first, string second)

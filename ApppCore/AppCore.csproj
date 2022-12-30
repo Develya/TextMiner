@@ -56,9 +56,11 @@
     <Compile Include="BLL\Model\Shingle.cs" />
     <Compile Include="BLL\Model\StringDistance.cs" />
     <Compile Include="DAL\DBInMemDocumentDAO.cs" />
+    <Compile Include="DAL\DBInMemDocumentDistanceDAO.cs" />
     <Compile Include="DAL\DBInMemStringDistanceDAO.cs" />
     <Compile Include="DAL\IDocumentDAO.cs" />
     <Compile Include="DAL\InMemoryDatabase.cs" />
+    <Compile Include="DAL\IDocumentDistanceDAO.cs" />
     <Compile Include="DAL\IStringDistanceDAO.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -69,7 +71,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="BLL\Control\" />
-    <Folder Include="FEL\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\Stub.System.Data.SQLite.Core.NetFramework.1.0.116.0\build\net46\Stub.System.Data.SQLite.Core.NetFramework.targets" Condition="Exists('..\packages\Stub.System.Data.SQLite.Core.NetFramework.1.0.116.0\build\net46\Stub.System.Data.SQLite.Core.NetFramework.targets')" />
